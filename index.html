@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Metro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Saját CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+
+    <!-- Fő Container: középre zárt, reszponzív margóval/paddinggal -->
+    <main class="container mx-auto p-4 md:p-6 lg:p-8">
+        <!-- Két egyenlő részre osztott grid layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+            
+            <!-- Bal oldali oszlop: 3 div egymás alatt (flex flex-col) -->
+            <section class="flex flex-col gap-4">
+                <!-- 1. doboz: lapos -->
+                <div class="bg-white rounded-xl shadow-md p-3 py-2 flex items-center justify-between border border-gray-200">
+
+                    <span class="text-sm font-semibold">1. Elem (lapos)</span>
+                    <button id="start-button" class="fixed top-4 right-4 bg-white text-gray-800 shadow-md p-2 rounded-lg">Start</button>
+                    <span class="text-xs text-gray-500">Státusz / infó</span>
+                </div>
+
+                <!-- 2. doboz: kb. ugyanakkora lapos -->
+                <div class="bg-white rounded-xl shadow-md p-3 py-2 flex items-center justify-between border border-gray-200">
+                    <span class="text-sm font-semibold">2. Elem (lapos)</span>
+                    <span class="text-xs text-gray-500">Vezérlők / gombok</span>
+                </div>
+
+                <!-- 3. doboz: négyzet alakú (kocka), reszponzív táblázattal -->
+                <div class="bg-white rounded-xl shadow-md p-2 md:p-4 aspect-square flex flex-col border border-gray-200">
+                    <!-- A konténer teljesen kitölti a négyzetet -->
+                    <div class="w-full h-full relative overflow-hidden rounded-lg bg-gray-50 border border-gray-200">
+                        <!-- 
+                            Reszponzív tábla háttérképpel:
+                            - bg-[url('resource/Frame%201.png')]: háttérkép a resource mappából
+                            - bg-cover / bg-center / bg-no-repeat: pontos illeszkedés a négyzetbe
+                        -->
+                        <table id="game-board" class="w-full h-full table-fixed border-collapse bg-[url('resource/Frame%201.png')] bg-cover bg-center bg-no-repeat">
+                            <tbody id="game-board-body">
+                                <!-- JavaScript segítségével ide szúrhatsz be <tr> és <td> elemeket -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Jobb oldali oszlop: két sor (~35% - 65% magasság arány), mindkettőben 2 egyenlő oszlop -->
+            <section class="flex flex-col gap-4">
+                
+                <!-- Felső sor (~35% magasság): 2 egyenlő oszlop -->
+                <div class="flex-[35] grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-[140px]">
+                    <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 flex flex-col justify-center">
+                        <h4 class="font-semibold text-sm mb-1">Felső bal</h4>
+                        <p class="text-xs text-gray-500">Kisebb modul / infó</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 flex flex-col justify-center">
+                        <h4 class="font-semibold text-sm mb-1">Felső jobb</h4>
+                        <p class="text-xs text-gray-500">Kisebb modul / infó</p>
+                    </div>
+                </div>
+
+                <!-- Alsó sor (~65% magasság): 2 egyenlő oszlop -->
+                <div class="flex-[65] grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-[260px]">
+                    
+                    <!-- Alsó bal (magasabb): 2 sorra osztva (~80% - 20%) -->
+                    <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 flex flex-col gap-3">
+                        <!-- Felső rész (~80% magasság) -->
+                        <div class="flex-[80] bg-gray-50 rounded-lg p-3 border border-gray-100 flex flex-col">
+                            <h4 class="font-semibold text-sm mb-1">Kártyák / lista (felső ~80%)</h4>
+                            <p class="text-xs text-gray-500">Ide jöhet a kártyák listája vagy a fő tartalom.</p>
+                        </div>
+                        <!-- Alsó rész (~20% magasság) -->
+                        <div class="flex-[20] bg-gray-50 rounded-lg p-2 border border-gray-100 flex items-center justify-between">
+                            <span class="text-xs font-medium text-gray-600">Alsó sáv (~20%)</span>
+                            <span class="text-xs text-gray-400">Gombok / lábléc</span>
+                        </div>
+                    </div>
+
+                    <!-- Alsó jobb (magasabb): 2 sorra osztva (~80% - 20%) -->
+                    <div class="bg-white rounded-xl shadow-md p-4 border border-gray-200 flex flex-col gap-3">
+                        <!-- Felső rész (~80% magasság) -->
+                        <div class="flex-[80] bg-gray-50 rounded-lg p-3 border border-gray-100 flex flex-col">
+                            <h4 class="font-semibold text-sm mb-1">Részletek (felső ~80%)</h4>
+                            <p class="text-xs text-gray-500">Ide jöhet a részletes tartalom / statisztika.</p>
+                        </div>
+                        <!-- Alsó rész (~20% magasság) -->
+                        <div class="flex-[20] bg-gray-50 rounded-lg p-2 border border-gray-100 flex items-center justify-between">
+                            <span class="text-xs font-medium text-gray-600">Alsó sáv (~20%)</span>
+                            <span class="text-xs text-gray-400">Gombok / lábléc</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <script src="src/htmlElements.js"></script>
+    <script src="src/base_data.js"></script>
+    <script src="src/classes.js"></script>
+    <script src="src/index.js"></script>
+
+</body>
+</html>
